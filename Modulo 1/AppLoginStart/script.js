@@ -1,3 +1,6 @@
+// pega o Array "loginData" no localStorage ou cria um array vazio
+let itemForStorage = JSON.parse(localStorage.getItem('loginData')) || []
+
 const credentials = {
     name: 'estudante',
     password: '2023'
@@ -23,9 +26,13 @@ pwd.addEventListener('change', (e) => {
     user.password = e.target.value
 })
 
-// formValidation recebe de parâmetros login e password
-function formValidation(login, password) {
-    if (login == credentials.name && password == credentials.password) return console.info('logado')
+// @param user
+function formValidation(login) {
+    if(login.name == credentials.name && login.password == credentials.password) {
+        console.info('logado')
+
+        saveOnLocalStorage(login) //Salva o objeto no localStorage
+    }
 
     return console.warn('credenciais incorretas')
 }
@@ -44,7 +51,32 @@ form.addEventListener('submit', (e) => {
     Username: ${user.name} 
     Password: ${user.password}`)
 
-    // chama a função passando como parâmetro o name e password recebidos
-    formValidation(user.name, user.password)
+    // chama a função passando como @param a const user
+    formValidation(user)
     clear()
 })
+
+// Manipulando o localStorage
+function saveOnLocalStorage(item) {
+    itemForStorage.push(item) //insere o item recebido no Array
+    // transforma o array em String e salva com o nome loginData
+    localStorage.setItem('loginData', JSON.stringify(itemForStorage))
+}
+
+// procura dados salvos com a chave 'loginData'
+function getSaved() {
+    let saved = JSON.parse(localStorage.getItem('loginData'))
+    // se o retorno de saved for !null ou !false, redireciona para a pagina de logout
+    if(saved) {
+        window.location.href = './logout.html'
+    }
+}
+
+function logOut() {
+    // limpa o localStorage
+    localStorage.clear('loginData')
+    alert('Log out realizado.')
+    window.location.href = './index.html'
+}
+
+getSaved()
