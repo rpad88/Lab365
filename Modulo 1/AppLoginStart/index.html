@@ -5,13 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App LoginStart</title>
+
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
-    
 </head>
 <body>
     <div class="container">
-        <form action="" method="GET" id="form">
+        <form name="form" action="" method="GET" id="form">
+            <div class="avatar">
+                <label>
+                    Avatar URL
+                    <input type="url" name="avatar" placeholder="avatar url" data-avatar>
+                </label>
+            </div>
             <div class="username">
                 <label>
                     Username
@@ -23,6 +29,12 @@
                 <label>
                     Password
                     <input type="password" name="password" placeholder="Password" data-password>
+                </label>
+            </div>
+            <div class="email">
+                <label>
+                    E-mail
+                    <input type="email" name="email" placeholder="email" data-email>
                 </label>
             </div>
             <button type="submit">Login</button>

@@ -1,33 +1,28 @@
 // pega o Array "loginData" no localStorage ou cria um array vazio
-let itemForStorage = JSON.parse(localStorage.getItem('loginData')) || []
+let storage = JSON.parse(localStorage.getItem('loginData')) || []
 
 const credentials = {
     name: 'estudante',
     password: '2023'
 }
 
-const user = {
-    name: '',
-    password: ''
-}
+// Cria um objeto vazio
+const user = {}
 
 // Selectors
-const userName = document.querySelector('[data-name]')
-const pwd = document.querySelector('[data-password]')
 const form = document.querySelector('#form')
+const editBtn = document.querySelector('[data-edit-btn]')
 
-// listeners
-userName.addEventListener('change', (e) => {
-    e.preventDefault()
-    user.name = e.target.value
-})
-pwd.addEventListener('change', (e) => {
-    e.preventDefault()
-    user.password = e.target.value
-})
+function getValuesFromForm() {
+    // insere atributos no objeto
+    user.name = document.forms.form.name.value
+    user.password = document.forms.form.password.value
+    user.email = document.forms.form.email.value
+    user.avatar = document.forms.form.avatar.value
+}
 
 // @param user
-function formValidation(login) {
+function loginValidation(login) {
     if(login.name == credentials.name && login.password == credentials.password) {
         console.info('logado')
 
@@ -38,45 +33,73 @@ function formValidation(login) {
 }
 
 // limpa os inputs
-function clear() {
-    userName.value = ''
-    pwd.value = ''
+function clearInputs() {
+    document.forms.form.name.value = ''
+    document.forms.form.password.value = ''
+    document.forms.form.email.value = ''
+    document.forms.form.avatar.value = ''
     console.log('* inputs limpos');
 }
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    console.log(`
-    dados informados
-    Username: ${user.name} 
-    Password: ${user.password}`)
-
+    getValuesFromForm() //recupera os dados informados no formulário  
+    console.log(user)
+    
     // chama a função passando como @param a const user
-    formValidation(user)
-    clear()
+    loginValidation(user)
+    clearInputs()
 })
 
 // Manipulando o localStorage
 function saveOnLocalStorage(item) {
-    itemForStorage.push(item) //insere o item recebido no Array
+    storage.push(item) //insere o item recebido no Array
     // transforma o array em String e salva com o nome loginData
-    localStorage.setItem('loginData', JSON.stringify(itemForStorage))
+    localStorage.setItem('loginData', JSON.stringify(storage))
 }
 
-// procura dados salvos com a chave 'loginData'
-function getSaved() {
-    let saved = JSON.parse(localStorage.getItem('loginData'))
-    // se o retorno de saved for !null ou !false, redireciona para a pagina de logout
-    if(saved) {
-        window.location.href = './logout.html'
+function isLoggedIn() { 
+    if(localStorage.getItem('loginData')) {
+        // let redirect = alert('deseja ser redirecionado ?')
+        location.href = './logout.html'
     }
+}
+
+function showData() {
+    console.log('showData chamado');
+    // ******** Logout page
+    const img = document.querySelector('[data-img]')
+    const uname = document.querySelector('[data-saved-username]')
+    const email = document.querySelector('[data-saved-email]')
+    const pwd = document.querySelector('[data-saved-pwd]')
+    storage.forEach(item => {
+        img.setAttribute('src', item.avatar)
+        uname.textContent = item.name
+        email.textContent = item.email
+        pwd.textContent = item.password
+    })
+}
+
+function editData() {
+    location.href = './index.html'
+    storage.forEach(item => {
+        document.forms.form.name.value = item.name
+        document.forms.form.password.value = item.password
+        document.forms.form.email.value = item.email
+        document.forms.form.avatar.value = item.avatar
+    })
+    stop()
 }
 
 function logOut() {
     // limpa o localStorage
-    localStorage.clear('loginData')
+    localStorage.removeItem('loginData')
     alert('Log out realizado.')
     window.location.href = './index.html'
 }
 
-getSaved()
+
+function stop() {
+    clearTimeout(hasLogin)
+}
+const hasLogin = setTimeout(isLoggedIn, 1000)

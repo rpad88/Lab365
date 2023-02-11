@@ -5,11 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de logout</title>
+    
+    <link rel="stylesheet" href="logout.css">
     <script src="./script.js" defer></script>
 </head>
 <body>
-    <div>
-        <button onclick=logOut()>Logout</button>
-    </div>
+    <main>
+        <div class="card">
+            <img data-img src="" width="120px">
+            <div>
+                Username: <span data-saved-username id="uname"></span>
+            </div>
+            <div>
+                Email: <span data-saved-email></span>
+            </div>
+            <div>
+                Password: <span data-saved-pwd></span>
+            </div>   
+            <div>
+                <button data-edit-btn onclick=editData()>Edit</button>
+                <button data-edit-btn onclick=showData()>Show data</button>
+                <button onclick=logOut()>Logout</button>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
