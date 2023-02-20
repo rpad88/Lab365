@@ -129,6 +129,7 @@ function removeItem(todoName) {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todoList))
 }
 
+// ! ainda com erros
 function editItem(name) {
     console.log('editItem chamado')
     document.form.taskName.value = name
