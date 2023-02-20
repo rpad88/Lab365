@@ -7,15 +7,24 @@
     <title>To Do List</title>
     <link rel="stylesheet" href="style.css">
     <script src="./script.js" defer></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
 </head>
 <body>
     <main>
-        <h2>To Do List - Lab365</h2>
-
         <form action="" name="form">
-            <input type="text" name="taskName" placeholder="Digite sua nova tarefa...">
+            <input type="text" name="taskName" placeholder="type your new todo...">
             <button type="submit">+</button>
         </form>
+
+        <h2>To Do List - Lab365</h2>
+        
+        <form action="" name="searchForm">
+            <input data-search type="text" placeholder="Search...">
+            <input type="submit" hidden>
+        </form>
+
         <div class="todo">
             <ul data-ul>
                 <!-- <li>teste</li>

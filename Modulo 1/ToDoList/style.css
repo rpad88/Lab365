@@ -5,6 +5,7 @@
 
     --hover-2: #CBEF43;
     --gray: #5E6973;
+    --gray-hover: #4d5964;
     --complete: #9B8FB9;
 }
 
@@ -84,6 +85,7 @@ li {
     padding: .2rem;
     font-size: 1.1rem;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--gray);
 }
@@ -92,7 +94,7 @@ li span {
     width: 90%;
 }
 
-li a {
+/* li a {
     color: rgb(114, 7, 7);
     font-weight: 600;
     font-size: 1.3rem;
@@ -102,6 +104,30 @@ li a {
 li a:hover {
     color: rgb(172, 11, 11);
     cursor: pointer;
+} */
+
+li .editBtn {
+    /* border: 1px solid #000; */
+    font-size: 1.1rem;
+    color: var(--btn-color);
+}
+
+li .editBtn:hover {
+    cursor: pointer;
+    color: var(--btn-hover)
+}
+
+li .deleteIcon {
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: var(--gray);
+}
+
+li .deleteIcon:hover {
+    cursor: pointer;
+    color: var(--gray-hover)
 }
 
 .complete {
