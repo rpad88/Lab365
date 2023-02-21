@@ -1,4 +1,5 @@
 import { users } from "./users.js"
+const info = document.querySelector('[data-info]')
 
 document.forms.find.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -10,10 +11,11 @@ document.forms.find.addEventListener('submit', (e) => {
     
     if(indexFound >= 0) {
         console.log(`Username encontrado no index ${indexFound}.`)
-
+        info.textContent = `Username encontrado no index ${indexFound}.`
         console.log(users[indexFound])
         // console.log(JSON.stringify(users[indexFound]))
     } else {
         console.log('Username não encontrado.');
+        info.textContent = 'Username não encontrado.'
     }
 })
