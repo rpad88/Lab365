@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    background: hsl(185, 60%, 40%);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+  }
+  
+  .card {
+    flex-grow: 0;
+    flex-shrink: 1;
+    width: 350px;
+    min-height: 360px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 10px 10px 30px rgba(30, 30, 60, 0.5);
+    overflow: hidden;
+  }
+  
+  .card-header {
+    background: hsl(185, 80%, 50%);
+    height: 100px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-header .photo {
+    border-radius: 50%;
+    height: 125px;
+    width: 125px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* transform: translate(50%, -50%); */
+    /* font-size: 70px; */
+    transform: translateY(50px)
+  }
+
+  .card-header .photo img {
+    border-radius: 50%;
+    width: 115px;
+  }
+
+  /* .card-content {
+    border: 1px solid #000;
+  } */
+  
+  .person {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5em;
+    padding-top: 1rem;
+  }
+  
+  .person .name {
+    font-weight: bold;
+  }
+  
+  .person .age {
+    /* Name should always be centered,
+     * no matter how wide the age number.
+     * Let's make the age take 0 space. */
+    display: inline-block;
+    width: 0;
+    
+    /* Let's move the age ~half of an "M" character widths
+     * away from the name */
+    transform: translateX(0.5em);
+  }
+  
+  .location {
+    text-align: center;
+    margin-top: 8px;
+  }
+  
+  table.stats {
+    margin-top: 50px;
+    border-top: 2px solid gray;
+    width: 100%;
+  }
+  
+  table.stats th,
+  table.stats td {
+    text-align: center;
+    
+    /* Each column gets equal width */
+    width: 33%;
+  }
+  
+  table.stats th {
+    font-weight: normal;
+  }
+  
+  table.stats td {
+    font-weight: bold;
+    font-size: 1.5em;
+  }
