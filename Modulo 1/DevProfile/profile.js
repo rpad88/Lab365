@@ -12,7 +12,13 @@ document.user_search.addEventListener('submit', e => {
     e.preventDefault()
 
     fetch(`https://api.github.com/users/${search.value}`)
-    .then(res => res.json())
+    .then(res => {
+        if(res.ok) {
+            return res.json()
+        } else {
+            throw new Error("ocorreu algum erro na requisição")
+        }
+    })
     .then(data => {
         console.log(data)
         render(data)
