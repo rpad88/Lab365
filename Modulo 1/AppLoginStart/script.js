@@ -1,5 +1,5 @@
 // pega o Array "loginData" no localStorage ou cria um array vazio
-let storage = JSON.parse(localStorage.getItem('loginData')) || []
+const storage = JSON.parse(localStorage.getItem('loginData')) || []
 
 const credentials = {
     name: 'estudante',
@@ -7,43 +7,48 @@ const credentials = {
 }
 
 // Cria um objeto vazio
-const user = {}
+// const user = {logged: false}
 
 // Selectors
 const form = document.querySelector('#form')
 const editBtn = document.querySelector('[data-edit-btn]')
 
 function getValuesFromForm() {
-    // insere atributos no objeto
-    user.name = document.forms.form.name.value
-    user.password = document.forms.form.password.value
-    user.email = document.forms.form.email.value
-    user.avatar = document.forms.form.avatar.value
+    // retorna um objeto com os atributos inseridos no formulário
+    return {
+        name: document.forms.form.name.value,
+        password: document.forms.form.password.value,
+        email: document.forms.form.email.value,
+        avatar: document.forms.form.avatar.value,
+        isLogged: false
+    }
+
 }
 
 // @param user
-function loginValidation(login) {
-    if(login.name == credentials.name && login.password == credentials.password) {
+function loginValidation(user) {
+    if(user.name == credentials.name && user.password == credentials.password) {
         console.info('logado')
 
-        saveOnLocalStorage(login) //Salva o objeto no localStorage
+        user.isLogged = true
+        saveOnLocalStorage(user) //Salva o objeto no localStorage
+        return
     }
-
     return console.warn('credenciais incorretas')
 }
 
 // limpa os inputs
 function clearInputs() {
-    document.forms.form.name.value = ''
-    document.forms.form.password.value = ''
-    document.forms.form.email.value = ''
-    document.forms.form.avatar.value = ''
+    document.form.name.value = ''
+    document.form.password.value = ''
+    document.form.email.value = ''
+    document.form.avatar.value = ''
     console.log('* inputs limpos');
 }
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
-    getValuesFromForm() //recupera os dados informados no formulário  
+    const user = getValuesFromForm() //recupera os dados informados no formulário  
     console.log(user)
     
     // chama a função passando como @param a const user
@@ -59,7 +64,7 @@ function saveOnLocalStorage(item) {
 }
 
 function isLoggedIn() { 
-    if(localStorage.getItem('loginData')) {
+    if(storage[0].isLogged) {
         // let redirect = alert('deseja ser redirecionado ?')
         location.href = './logout.html'
     }
@@ -93,7 +98,11 @@ function editData() {
 
 function logOut() {
     // limpa o localStorage
-    localStorage.removeItem('loginData')
+    // localStorage.removeItem('loginData')
+    let index = storage.findIndex(user => user.name == document.querySelector('[data-saved-username]').textContent)
+    storage[index].isLogged = false
+    console.log(storage[index])
+    localStorage.setItem('loginData', JSON.stringify(storage))
     alert('Log out realizado.')
     window.location.href = './index.html'
 }
