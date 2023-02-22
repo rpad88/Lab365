@@ -6,9 +6,6 @@ const credentials = {
     password: '2023'
 }
 
-// Cria um objeto vazio
-// const user = {logged: false}
-
 // Selectors
 const form = document.querySelector('#form')
 const editBtn = document.querySelector('[data-edit-btn]')
@@ -22,14 +19,12 @@ function getValuesFromForm() {
         avatar: document.forms.form.avatar.value,
         isLogged: false
     }
-
 }
 
 // @param user
 function loginValidation(user) {
     if(user.name == credentials.name && user.password == credentials.password) {
         console.info('logado')
-
         user.isLogged = true
         saveOnLocalStorage(user) //Salva o objeto no localStorage
         return
@@ -70,6 +65,7 @@ function isLoggedIn() {
     }
 }
 
+//PREENCHE AS INFORMAÇÕES
 function showData() {
     console.log('showData chamado');
     // ******** Logout page
@@ -97,12 +93,11 @@ function editData() {
 }
 
 function logOut() {
-    // limpa o localStorage
-    // localStorage.removeItem('loginData')
+    // pega o index do usuário
     let index = storage.findIndex(user => user.name == document.querySelector('[data-saved-username]').textContent)
-    storage[index].isLogged = false
-    console.log(storage[index])
-    localStorage.setItem('loginData', JSON.stringify(storage))
+    storage[index].isLogged = false //seta para false a informação de login
+    // console.log(storage[index])
+    localStorage.setItem('loginData', JSON.stringify(storage)) //salva
     alert('Log out realizado.')
     window.location.href = './index.html'
 }
