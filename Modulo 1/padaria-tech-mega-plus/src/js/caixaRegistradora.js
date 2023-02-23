@@ -1,36 +1,62 @@
-export class CaixaRegistradora {
+import { Cliente } from "./Cliente"
+import { Produto } from "./Produto"
+export class CaixaRegistradora {    
     #id = 0
     #cliente
-    #codigoBarra
-    #preco
-    #nome
+    // #preço
+    #carrinho = []
     
-    constructor(nome, codigoBarra, preco) {
-        this.#codigoBarra = codigoBarra
-        this.#preco = preco
-        this.#nome = nome
-        CaixaRegistradora.id += 1
+    obrigatorio(campo) {
+        throw new Error(`${campo} obrigatório`)
     }
-    novoProduto(produto) {
-        this.estoque.push(produto)
+    
+    constructor(cliente) {
+        this.#cliente = cliente || this.obrigatorio("Nome do Cliente")
     }
-    set cliente(nome) {
-        this.#cliente = nome
+    set cliente(novoCliente) {
+        if(novoCliente instanceof Cliente) {
+            this.#cliente = novoCliente
+        }
     }
-    registraProduto(codigoBarra, qtd) {
-        this.qtd = qtd        
+    get cliente() {
+        return this.#cliente
     }
-    get total() {
-        return `total: ${this.qtd * this.#preco}`
+    registraCompra(produto, qtd) {
+        if(produto instanceof Produto) {
+            let subTotal = {produto, qtd}
+            this.#carrinho.push(subTotal)
+        }        
     }
+    
     fecharConta(dinheiro) {
         return `valor do troco: ${dinheiro - this.total}`
     }
     get id() {
-        return CaixaRegistradora.id
+        return this.#id
     }
     get dados() {
         return this
+    }
+    set carrinho(produto) {
+        if(produto instanceof Produto) {
+            this.#carrinho.push(produto)
+        }
+    }
+    get total() {
+        console.log(this.#cliente.nome)
+        var total = 0
+        this.#carrinho.forEach(item => {
+        console.log(`
+        Produto: ${item.produto.nome}
+        Preço: ${item.produto.preço}
+        qtd: ${item.qtd}
+        Total: R$ ${(item.produto.preço * item.qtd).toFixed(2)}
+        `)
+        let subTotal = item.qtd * item.produto.preço
+        total += subTotal
+       })
+        
+       return total
     }
 }
 
