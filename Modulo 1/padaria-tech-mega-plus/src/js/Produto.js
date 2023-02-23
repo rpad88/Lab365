@@ -8,12 +8,9 @@ export class Produto {
     }
     
     constructor(nome, codigoBarra, preco) {
-        // if(!nome) this.obrigatorio("Nome")
-        // if(!codigoBarra) this.obrigatorio("Código de Barras")
-        // if(!preco) this.obrigatorio("Preço")
         this.#nome = nome || this.obrigatorio("Nome")
         this.#codigoBarra = codigoBarra || this.obrigatorio("Código de Barras")
-        this.#preço = preco || this.obrigatorio("Preço")
+        this.#preço = parseFloat(preco) || this.obrigatorio("Preço")
     }
 
     get nome() {

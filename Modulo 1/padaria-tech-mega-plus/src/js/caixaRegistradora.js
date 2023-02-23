@@ -1,9 +1,7 @@
 import { Cliente } from "./Cliente"
 import { Produto } from "./Produto"
 export class CaixaRegistradora {    
-    #id = 0
     #cliente
-    // #preço
     #carrinho = []
     
     obrigatorio(campo) {
@@ -31,9 +29,7 @@ export class CaixaRegistradora {
     fecharConta(dinheiro) {
         return `valor do troco: ${dinheiro - this.total}`
     }
-    get id() {
-        return this.#id
-    }
+    
     get dados() {
         return this
     }
@@ -43,20 +39,18 @@ export class CaixaRegistradora {
         }
     }
     get total() {
-        console.log(this.#cliente.nome)
+        console.log("Cliente: " +this.#cliente.nome)
         var total = 0
         this.#carrinho.forEach(item => {
         console.log(`
-        Produto: ${item.produto.nome}
-        Preço: ${item.produto.preço}
-        qtd: ${item.qtd}
-        Total: R$ ${(item.produto.preço * item.qtd).toFixed(2)}
+        Produto: ${item.produto.nome} | Preço: ${item.produto.preço} | Qtd: ${item.qtd}
+        total do item: R$ ${(item.produto.preço * item.qtd).toFixed(2)}
         `)
         let subTotal = item.qtd * item.produto.preço
         total += subTotal
        })
         
-       return total
+       return 'total R$ '+total.toFixed(2)
     }
 }
 

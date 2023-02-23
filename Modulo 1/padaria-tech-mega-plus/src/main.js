@@ -4,7 +4,6 @@ import { Cliente } from './js/Cliente'
 import { Produto } from './js/Produto'
 
 const estoque = []
-// const compras = []
 
 function addNovoProduto(produto) {
   estoque.push(produto)
@@ -32,5 +31,3 @@ cr.registraCompra(p1, 3)
 cr.registraCompra(p2, 2)
 
 console.log(cr.total)
-
-
