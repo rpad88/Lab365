@@ -1,9 +1,15 @@
 export class Conta {
-    #saldo
+    #id = 0
+    #saldo = 0
     #senha
 
-    constructor(senha, saldo = 0) {
-        this.#senha = senha || new Error("É obrigatório informar uma senha")
+    constructor(senha, saldo) {
+        this.#senha = Number(senha) ||  this.obrigatorio('senha')
+        this.#id += 1
+    }
+
+    obrigatorio(campo) {
+        throw new Error(`${campo} é obrigatório`)
     }
 
     get getSaldo() {
@@ -11,7 +17,7 @@ export class Conta {
     }
     
     checkPass() {
-       let password = prompt("digite a senha:")
+       let password = Number(prompt("digite a senha:"))
        if(password !== this.#senha) {
         throw new Error("Senha inválida")
        }
@@ -19,7 +25,10 @@ export class Conta {
 
     deposita(valor){
         if(valor <= 0) throw new Error("valor deve ser maior que 0")
+        this.checkPass()
         this.#saldo += valor
+        return console.log(`Deposito realizado com sucesso.
+        Saldo atual: R$ ${this.getSaldo}`)
     }
 
     saca(valor) {
@@ -27,7 +36,10 @@ export class Conta {
         
         if(valor > this.#saldo) throw new Error("Saldo insuficiente.")
         
+        this.checkPass()
         this.#saldo -= valor
+        return console.log(`valor sacado: R$ ${valor}
+        Saldo atual: R$ ${this.getSaldo}`)
     }
 
 }
