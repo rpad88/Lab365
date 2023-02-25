@@ -1,10 +1,17 @@
-import { Conta } from "./Conta.js";
+import { Conta } from "./Conta.js"
+import {ContaPoupanca} from "./ContaPoupanca.js";
 
-let contaCorrente = new Conta(12345)
+// import { ContaPoupanca } from "./ContaPoupanca.js"
+
+let contaCorrente = new Conta(12345, 100)
 console.log(contaCorrente);
 
-contaCorrente.deposita(150)
-contaCorrente.saca(30)
+// contaCorrente.deposita(150)
+// contaCorrente.saca(30)
 // console.log(contaCorrente.getSaldo)
 
-let cc2 = new Conta()
+let cp = new ContaPoupanca(123, 100)
+console.log(cp)
+cp.deposita(150)
+cp.atualizaJuros()
+console.log(cp.mostraSaldo())

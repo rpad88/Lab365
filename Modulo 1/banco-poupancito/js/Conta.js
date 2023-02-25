@@ -5,6 +5,7 @@ export class Conta {
 
     constructor(senha, saldo) {
         this.#senha = Number(senha) ||  this.obrigatorio('senha')
+        this.#saldo = saldo
         this.#id += 1
     }
 
@@ -12,8 +13,20 @@ export class Conta {
         throw new Error(`${campo} é obrigatório`)
     }
 
+    set setSaldo(vlr) {
+        this.#saldo = vlr
+    }
+
     get getSaldo() {
         return this.#saldo
+    }
+
+    mostraSaldo() {
+        return `Saldo: R$ ${this.getSaldo.toFixed(2)}`
+    }
+
+    atualizaJuros(index) {
+        this.setSaldo = this.#saldo * index
     }
     
     checkPass() {
@@ -27,8 +40,7 @@ export class Conta {
         if(valor <= 0) throw new Error("valor deve ser maior que 0")
         this.checkPass()
         this.#saldo += valor
-        return console.log(`Deposito realizado com sucesso.
-        Saldo atual: R$ ${this.getSaldo}`)
+        return console.log(`Deposito realizado com sucesso.`)
     }
 
     saca(valor) {
