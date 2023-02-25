@@ -2,9 +2,8 @@ import { Conta } from "./Conta.js";
 
 export class ContaPoupanca extends Conta{
     
-    atualizaJuros(index = 1.07) {
-       let vlrAtualizado =  this.getSaldo * index
-       let remuneracao = vlrAtualizado - this.getSaldo
+    atualizaJuros(index = 0.007) {
+       let remuneracao =  this.getSaldo * index
         this.deposita(remuneracao)
     }
 
