@@ -1,9 +1,9 @@
-import { Cliente } from "./Cliente"
-import { Produto } from "./Produto"
+import { Cliente } from "./Cliente.js"
+import { Produto } from "./Produto.js"
 export class CaixaRegistradora {    
     #cliente
     #carrinho = []
-    
+     
     obrigatorio(campo) {
         throw new Error(`${campo} obrigatório`)
     }
@@ -21,7 +21,12 @@ export class CaixaRegistradora {
     }
     registraCompra(produto, qtd) {
         if(produto instanceof Produto) {
-            let subTotal = {produto, qtd}
+            console.log(produto);
+            if(qtd > produto.getQtdEstoque) {
+                throw new Error('Produto sem estoque suficiente')
+            }
+            Produto.prototype.retira(produto,qtd)
+            const subTotal = {produto, qtd}
             this.#carrinho.push(subTotal)
         }        
     }
