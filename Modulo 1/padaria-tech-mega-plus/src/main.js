@@ -1,7 +1,7 @@
 import './style.css'
-import { CaixaRegistradora } from './js/CaixaRegistradora'
-import { Cliente } from './js/Cliente'
-import { Produto } from './js/Produto'
+import { CaixaRegistradora } from './js/CaixaRegistradora.js'
+import { Cliente } from './js/Cliente.js'
+import { Produto } from './js/Produto.js'
 
 const estoque = []
 
@@ -33,8 +33,8 @@ form.addEventListener('submit', e => {
   let cliente = new Cliente(clienteInput.value)
   console.log(cliente)
 })
-/* 
-*   @param (Nome do produto, Código de barra, Preço, Estoque)
+/* *Class Produto
+*   @param (Nome do produto, Código de barra, Preço, Quantidade Estoque)
 */
 let p1 = new Produto("Carvão", 111122, 15, 10)
 let p2 = new Produto('Gelo Cubo',112233, 10.90, 15)
