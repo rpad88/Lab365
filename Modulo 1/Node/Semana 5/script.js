@@ -1,13 +1,17 @@
-const list = ['Pedro','José','Aderbal','Danilo','Luisa','Vitoria','Luis','Danilo','José']
-
 // [M1S05] Ex 1 - Função deletar dados duplicados
-let listaUnica = [...new Set(list)]
-console.log(listaUnica)
+function deletarDuplicados() {
+    const list = ['Pedro','José','Aderbal','Danilo','Luisa','Vitoria','Luis','Danilo','José']
 
-let apagados = list.filter((item, i) => {
-    return list.indexOf(item) !== i
-})
-console.log(apagados.join(','), listaUnica);
+    console.log('lista original ', list);
+
+    let listaUnica = [...new Set(list)]
+    console.log('lista unica: ', listaUnica)
+
+    let apagados = list.filter((item, i) => {
+        return list.indexOf(item) !== i
+    })
+    console.log('final: ',apagados.join(','), listaUnica);
+}
 
 // [M1S05] Ex 2 - Função de exibir dados dos usuários
 function concatenar() {
@@ -19,5 +23,7 @@ function concatenar() {
     for(i = 0; i< usuarios.length; i++) {
         novoArray.push(usuarios[i] + ' - ' + frutas[i])
     }
-    console.log(novoArray);
+    console.log('resultado final: ',novoArray);
 }
+
+// [M1S05] Ex 3 - Função para adicionar novos usuários na lista
