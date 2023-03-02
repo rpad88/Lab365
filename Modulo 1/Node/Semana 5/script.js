@@ -32,13 +32,16 @@ function adicionarNome(...nomes) {
     let listaLowerCase = lista.map(el => el.toLowerCase())
 
     console.log('lista original: ', lista)
-    nomes.forEach(nome =>  {
-        if(listaLowerCase.includes(nome.toLowerCase())) {
-            console.warn('Nome informado já contém na lista')
-            return
-        }
+    try {
+        nomes.forEach(nome =>  {
+            if(typeof nome !== 'string') return console.warn('Nome deve ser string.')
+            if(listaLowerCase.includes(nome.toLowerCase())) return console.warn(`${nome} já contém na lista.`)
+    
             lista.push(nome)
             console.log(`Adicionando o nome: ${nome}`)
-    })
+        })
+    } catch (error) {
+        console.error('erro encontrado: ', error.message)
+    }
     console.log('lista atualizada: ', lista)
 }
