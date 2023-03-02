@@ -45,3 +45,23 @@ function adicionarNome(...nomes) {
     }
     console.log('lista atualizada: ', lista)
 }
+
+// [M1S05] Ex 4 - Função para retornar dados filtrados
+function filtrados() {
+    let lista = [
+        {nome: "luis", idade: 26},
+        {nome: "norma", idade: 16},
+        {nome: "daiana", idade: 26},
+        {nome: "jorge", idade: 16},
+        {nome: "kauan", idade: 16},
+        {nome: "charles", idade: 26},
+        {nome: "marco", idade: 16},
+        {nome: "bruno", idade: 16}
+    ]
+
+    let menor = lista.filter(item => item.idade < 18)
+    let maior = lista.filter(item => item.idade >= 18)
+
+    console.log('lista com idade < 18: ', menor)
+    console.log('lista com idade >= 18: ', maior)
+}
