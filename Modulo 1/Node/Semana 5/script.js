@@ -1,6 +1,6 @@
 // [M1S05] Ex 1 - Função deletar dados duplicados
 function deletarDuplicados() {
-    const list = ['Pedro','José','Aderbal','Danilo','Luisa','Vitoria','Luis','Danilo','José']
+    let list = ['Pedro','José','Aderbal','Danilo','Luisa','Vitoria','Luis','Danilo','José']
 
     console.log('lista original ', list);
 
@@ -15,8 +15,8 @@ function deletarDuplicados() {
 
 // [M1S05] Ex 2 - Função de exibir dados dos usuários
 function concatenar() {
-    const usuarios = ['Pedro','José','Aderbal','Danilo','Luisa','Vitoria']
-    const frutas = ['Banana','Morango','Maçã','Uva','Pêra','Laranja']
+    let usuarios = ['Pedro','José','Aderbal','Danilo','Luisa','Vitoria']
+    let frutas = ['Banana','Morango','Maçã','Uva','Pêra','Laranja']
     frutas.reverse()
 
     const novoArray = []
@@ -27,3 +27,18 @@ function concatenar() {
 }
 
 // [M1S05] Ex 3 - Função para adicionar novos usuários na lista
+function adicionarNome(...nomes) {
+    let lista = ['Pedro', 'José', 'Aderbal', 'Danilo', 'Luisa', 'Vitoria']
+    let listaLowerCase = lista.map(e => e.toLowerCase())
+    let nomesLowerCase = nomes.map(nome => nome.toLowerCase())
+    
+    // console.log(listaLowerCase,nomesLowerCase)
+    if(listaLowerCase.includes(...nomesLowerCase)) return console.warn('Nome informado já contém na lista')
+    
+    console.log('lista original: ', lista)
+    nomes.map(nome => {
+        console.log(`Adicionando o nome: ${nome}`)
+        lista.push(nome)
+    })
+    console.log('lista atualizada: ', lista)
+}
