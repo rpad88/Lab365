@@ -29,16 +29,16 @@ function concatenar() {
 // [M1S05] Ex 3 - Função para adicionar novos usuários na lista
 function adicionarNome(...nomes) {
     let lista = ['Pedro', 'José', 'Aderbal', 'Danilo', 'Luisa', 'Vitoria']
-    let listaLowerCase = lista.map(e => e.toLowerCase())
-    let nomesLowerCase = nomes.map(nome => nome.toLowerCase())
-    
-    // console.log(listaLowerCase,nomesLowerCase)
-    if(listaLowerCase.includes(...nomesLowerCase)) return console.warn('Nome informado já contém na lista')
-    
+    let listaLowerCase = lista.map(el => el.toLowerCase())
+
     console.log('lista original: ', lista)
-    nomes.map(nome => {
-        console.log(`Adicionando o nome: ${nome}`)
-        lista.push(nome)
+    nomes.forEach(nome =>  {
+        if(listaLowerCase.includes(nome.toLowerCase())) {
+            console.warn('Nome informado já contém na lista')
+            return
+        }
+            lista.push(nome)
+            console.log(`Adicionando o nome: ${nome}`)
     })
     console.log('lista atualizada: ', lista)
 }
