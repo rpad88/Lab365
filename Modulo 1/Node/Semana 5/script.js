@@ -65,3 +65,15 @@ function filtrados() {
     console.log('lista com idade < 18: ', menor)
     console.log('lista com idade >= 18: ', maior)
 }
+
+// [M1S05] Ex 5 - Função para contar vogais
+function contaVogais(texto) {
+    if(typeof texto !== 'string') return console.warn('favor informar uma palavra ou texto')
+
+    let regex = /[aeiou]/g //vogais em escopo global.
+    let total = texto.toLowerCase().match(regex)
+    // se total for null ou undefined retorna um aviso.
+    if(!total) return console.warn('nenhuma vogal encontrada.')
+    console.log('vogais encontradas: ', total);
+    console.log('total de vogais: ',total.length);
+}
