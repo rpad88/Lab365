@@ -6,7 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["Javascript", "js", "node"],
+  "keywords": [
+    "Javascript",
+    "js",
+    "node"
+  ],
   "author": "@rpad88",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.21"
+  }
 }
