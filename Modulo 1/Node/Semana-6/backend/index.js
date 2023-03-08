@@ -8,5 +8,5 @@ const app = express()
 // }
 
 app.listen(3333, () => {
-    console.log('servidor online')
+    console.log('servidor online na porta 3333')
 })
