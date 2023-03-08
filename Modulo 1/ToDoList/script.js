@@ -40,8 +40,8 @@ const App = {
 }
 
 //* SEARCH FUNCTION
-document.searchForm.addEventListener('submit', (e) => {
-    e.preventDefault()
+function search(){
+
     App.clear() //CLEAR DE <ul> TO SHOW ONLY FOUND ITENS
     const search = searchInput.value
     var results = []
@@ -68,7 +68,10 @@ document.searchForm.addEventListener('submit', (e) => {
             })
         })
     }
-})
+}
+
+const handleSearch = document.searchForm.addEventListener('input', search)
+
 
 //* FORM TO ADD A NEW TODO
 document.form.addEventListener('submit', e => {
