@@ -4,7 +4,7 @@ function busca(nome) {
     if(typeof nome !== 'string') throw new Error('Nome inválido')
     let index = lista.findIndex(el => el.toLowerCase() == nome.toLowerCase())
     if(index < 0) return console.warn('nome na lista não encontrado')
-    console.log(lista[index], lista);
+    console.log(lista[index], 'posição: '+index);
 }
 
 busca('Danilo')
