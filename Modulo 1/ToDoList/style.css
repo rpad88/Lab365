@@ -46,6 +46,7 @@ form button {
 form button:hover {
     cursor: pointer;
     color: var(--hover-2);
+    transform: scale(1.2);
 }
 
 input[type=text] {
@@ -114,7 +115,8 @@ li .editBtn {
 
 li .editBtn:hover {
     cursor: pointer;
-    color: var(--btn-hover)
+    color: var(--hover-2);
+    transform: scale(1.1);
 }
 
 li .deleteIcon {
@@ -127,11 +129,36 @@ li .deleteIcon {
 
 li .deleteIcon:hover {
     cursor: pointer;
-    color: var(--gray-hover)
+    color: var(--gray-hover);
+    transform: scale(1.1);
 }
 
+/* when todo is completed, put a line-through */
 .complete {
     color: var(--gray);
     text-decoration: line-through wavy var(--complete);
     text-decoration-thickness: 2px;
+}
+
+dialog {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    width: 300px;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+dialog p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+}
+
+
+#editInput {
+    color: var(--gray-hover);
 }

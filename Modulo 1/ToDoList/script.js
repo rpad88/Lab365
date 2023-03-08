@@ -1,7 +1,11 @@
 const LOCAL_STORAGE_KEY = 'todo:lab365'
 const todoList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || []
-const ul = document.querySelector('[data-ul]')
+const ul = document.querySelector('[data-ul]') //list of new todos
+const doneList = document.querySelector('[data-done]') //list of completed todos
 const searchInput = document.querySelector('[data-search]')
+const modal = document.querySelector('dialog') //tag <dialog>
+const editForm = document.editForm //form open on modal when click to edit todo
+const editInput = document.querySelector('#editInput') //input inside editForm
 
 const App = {
     // acrescenta o item no Array e salva no LocalStorage
@@ -23,21 +27,22 @@ const App = {
              removeItem(span.textContent)
              li.remove()
             })
+
+            check(span, li)
         })
     },    
-}
-
-// REMOVE ALL <li> FROM HTML
-function clear() {
-    while(ul.hasChildNodes()) {
-        ul.removeChild(ul.firstChild)
+    // REMOVE ALL <li> FROM HTML
+    clear() {
+        while(ul.hasChildNodes()) {
+            ul.removeChild(ul.firstChild)
+        }
     }
 }
 
 //* SEARCH FUNCTION
 document.searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
-    clear() //CLEAR DE <ul> TO SHOW ONLY FOUND ITENS
+    App.clear() //CLEAR DE <ul> TO SHOW ONLY FOUND ITENS
     const search = searchInput.value
     var results = []
     if(search === '' || search == null) {
@@ -50,12 +55,17 @@ document.searchForm.addEventListener('submit', (e) => {
             return item.toLowerCase().includes(search.toLowerCase())
         })
         results.forEach(result => {
-            const{li, span, deleteIcon} = createLi(result)
+            const{li, span, editBtn, deleteIcon} = createLi(result)
             
-                deleteIcon.addEventListener('click', () => {
-                 removeItem(span.textContent)
-                 li.remove()
-                })
+            editBtn.addEventListener('click', () => {
+                console.log("editBtn clicado");
+                editItem(span.textContent)
+            })
+
+            deleteIcon.addEventListener('click', () => {
+                removeItem(span.textContent)
+                li.remove()
+            })
         })
     }
 })
@@ -64,33 +74,35 @@ document.searchForm.addEventListener('submit', (e) => {
 document.form.addEventListener('submit', e => {
     e.preventDefault()
 
-    const todo = document.form.taskName.value
-    if(todo == null || todo === "") return
-    const{li, span, editBtn, deleteIcon} = createLi(todo)
+    const todoText = document.form.taskName.value
+    if(todoText == null || todoText === "") return
+    const{li, span, editBtn, deleteIcon} = createLi(todoText)
 
-    App.save(todo)
+    App.save(todoText)
 
     editBtn.addEventListener('click', () => {
         console.log("editBtn clicado");
         editItem(span.textContent)
     })
 
-       deleteIcon.addEventListener('click', () => {
+    deleteIcon.addEventListener('click', () => {
         removeItem(span.textContent)
         li.remove()
-       })
+    })
+    
+    check(span, li)
        
     document.form.taskName.value = null
 })
 
 
 // CRIA O <LI> NO HTML
-function createLi(todo) {
+function createLi(todoText) {
     // create a <li> tag
     const li = document.createElement('li')
     // create a <span> tag
     const span = document.createElement('span')
-    span.innerText = todo //<span> content = todo content
+    span.innerText = todoText //<span> content = todo content
 
     // EDIT BUTTON
     const editBtn = document.createElement('a')
@@ -98,7 +110,6 @@ function createLi(todo) {
     <span class="material-icons editBtn">
     edit
     </span>`
-    
     
     li.appendChild(span) // insert <span> into <li>
     li.appendChild(editBtn)
@@ -129,19 +140,34 @@ function removeItem(todoName) {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todoList))
 }
 
-// ! ainda com erros
 function editItem(name) {
     console.log('editItem chamado')
-    document.form.taskName.value = name
+    modal.showModal()
+    editInput.value = name
     let index = todoList.findIndex(
         (todo) => todo.toLowerCase() == name.toLowerCase()
-    );
-    console.log(`antes: ${todoList[index]}`);
-    todoList[index] = document.form.taskName.value
-    console.log(`depois: ${todoList[index]}`);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todoList))
-    document.form.taskName.value = null
-    // App.render()
+    )
+    
+    editForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        todoList[index] = editInput.value
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todoList))
+        editInput.value = null
+        modal.close()
+        App.clear()
+        App.render()
+    })
 }
 
-App.render()
+function check(span, li) {
+    li.addEventListener("click", () => {
+        console.log('span clicado')
+        span.classList.toggle('complete')
+
+        span.classList.contains('complete')
+            ? doneList.appendChild(li)
+            : ul.appendChild(li)
+    })
+}
+
+document.onload = App.render()

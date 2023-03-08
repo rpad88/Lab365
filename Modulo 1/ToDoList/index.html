@@ -24,6 +24,13 @@
             <input data-search type="text" placeholder="Search...">
             <input type="submit" hidden>
         </form>
+        <dialog>
+            <p>Edit your To Do...</p>
+            <form action="" name="editForm">
+                <input type="text" name="editTask" id="editInput">
+                <button type="submit">+</button>
+            </form>
+        </dialog>
 
         <div class="todo">
             <ul data-ul>
@@ -33,9 +40,10 @@
             </ul>
         </div>
         <div class="done-todo">
+            <p>Done Todo's</p>
             <ul data-done>
-                <li class="complete">finalizado</li>
-                <li>finalizado</li>
+                <!-- <li > <span class="complete">finalizado</span></li>
+                <li>finalizado</li> -->
             </ul>
         </div>
     </main>
