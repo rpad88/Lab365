@@ -6,6 +6,9 @@ Solução para o exercício [M1S03] Ex 3 - ToDo List
 
 ![](./screenshot.png)
 
+### Info
+Double click to mark as done
+
 ### Built With
 
 - HTML 5

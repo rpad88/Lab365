@@ -135,7 +135,7 @@ function createLi(todoText) {
 function removeItem(todoName) { 
     console.log(`removendo a tarefa: ${todoName}`);
 
-    const index = todoList.findIndex(todo => todo.toLowerCase() == todoName.toLowerCase())
+    let index = todoList.findIndex(todo => todo.toLowerCase() == todoName.toLowerCase())
     console.log('index:' +index)
 
     todoList.splice(index, 1) //remove o item
@@ -163,7 +163,7 @@ function editItem(name) {
 }
 
 function check(span, li) {
-    li.addEventListener("click", () => {
+    li.addEventListener("dblclick", () => {
         console.log('span clicado')
         span.classList.toggle('complete')
 

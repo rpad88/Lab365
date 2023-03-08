@@ -162,3 +162,7 @@ dialog p {
 #editInput {
     color: var(--gray-hover);
 }
+
+span .material-icons .deleteIcon {
+    pointer-events: none;
+}
