@@ -35,9 +35,10 @@ export class Produto {
     }
 
     retira(produto, qtd) {
-        if(#qtdEstoque in produto) {
-            let total = produto.getQtdEstoque - qtd
-            produto.setQtdEstoque = total
-        }
+        // if(#qtdEstoque in produto) {
+        //     let total = produto.getQtdEstoque - qtd
+        //     produto.setQtdEstoque = total
+        // }
+        produto.#qtdEstoque -= qtd
     }
 }

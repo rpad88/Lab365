@@ -31,8 +31,9 @@ export class CaixaRegistradora {
         }        
     }
     
-    fecharConta(dinheiro) {
-        return `valor do troco: ${dinheiro - this.total}`
+    fechaConta(dinheiro) {
+        if(isNaN(dinheiro)) return console.warn('Favor informar o valor recebido.')
+        return console.log(`valor do troco: ${(dinheiro - this.total).toFixed(2)}`)
     }
     
     get dados() {
@@ -54,8 +55,8 @@ export class CaixaRegistradora {
         let subTotal = item.qtd * item.produto.preço
         total += subTotal
        })
-        
-       return 'total R$ '+total.toFixed(2)
+        console.log('total R$ '+total.toFixed(2))
+        return total.toFixed(2)
     }
 }
 

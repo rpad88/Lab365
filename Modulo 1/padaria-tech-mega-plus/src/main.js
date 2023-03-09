@@ -52,4 +52,4 @@ console.log(cr)
 cr.registraCompra(p1, 10)
 cr.registraCompra(p2, 2)
 
-console.log(cr.total)
+cr.fechaConta(180.5)
