@@ -1,35 +1,27 @@
-const { json } = require('express')
 const express = require('express')
 const app = express()
 app.use(express.json())
 
+const rotas = require('./routes/rotas')
+
 // app = {
-//     use,
+//     use('/', função),
 //     listen: recebe(porta, função callback),
-//     route
 // }
 
-const devs = [
-    {name: "Fulano", email: "fulano@email.com"},
-    {name: "Beltrano", email: "beltrano@gmail.com"}
-]
+// ROTAS
+const listaDeRotas = ['/', '/devs', '/criaRota/:nome', '/enviaObj', '/envia-user', '/deleta-user/:id', '/verifica-idade']
+app.use(listaDeRotas, rotas)
 
-app.get('/', (req, res) => {
-    res.send('Bem vindo')
-})
-app.get('/devs', (req, res) => {
-   return res.json(devs)
-})
-app.post('/rota/:nome', (req, res) => {
-    const {nome} = req.params
-    if(!nome) {
-        return res
-            .status(400)
-            .json({"erro": "Campo nome é obrigatório"})
-    }
-    res.send(`Rota de API criada pelo(a): ${nome}`)
-})
+// app.use('/', rotas)
+// app.use('/devs', rotas)
+// app.use('/criaRota/:nome', rotas)
+// app.use('/enviaObj', rotas)
+// app.use('/envia-user', rotas)
+// app.use('/deleta-user', rotas)
 
+
+// [M1S06] Ex 3
 app.listen(3333, () => {
     console.log('servidor online na porta 3333')
 })
