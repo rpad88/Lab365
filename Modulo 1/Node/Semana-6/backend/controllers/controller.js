@@ -10,7 +10,7 @@ module.exports = {
         res.status(200).json(devs)
     },
     // [M1S06] Ex 4 - Rotas com express
-    criaRota: (req, res) => {
+    rota: (req, res) => {
         const {nome} = req.params
         if(!nome) {
             return res
@@ -32,7 +32,7 @@ module.exports = {
     enviaUser: (req, res) => {
         const newUser = req.body
         res.status(200)
-        .json({status:"Novo user enviado com sucesso", ...newUser})
+        .json([{status:"Novo user enviado com sucesso"}, {...newUser}])
     },
     deletaUser: (req, res) => {
         const listaDeUsers = [

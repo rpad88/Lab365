@@ -5,7 +5,15 @@ app.use(express.json())
 const rotas = require('./routes/rotas')
 
 // ROTAS
-const listaDeRotas = ['/', '/devs', '/criaRota/:nome', '/enviaObj', '/envia-user', '/deleta-user/:id', '/verifica-idade']
+const listaDeRotas = [
+    '/', //index
+    '/devs', //retorna um array
+    '/rota/:nome', //retorna a string "Rota de API criada pelo ${nome}"
+    '/enviaObj', //recebe um objeto no body da requisição
+    '/envia-user', //recebe um user no body da requisição
+    '/deleta-user/:id', //deleta um usuário pelo id
+    '/verifica-idade' //verifica se o usuário tem idade < 21
+]
 
 // MIDDLEWARES
 // [M1S06] Ex 8 - Criando uma API (parte 3)
@@ -21,7 +29,7 @@ app.use(listaDeRotas, rotas)
 
 // app.use('/', rotas)
 // app.use('/devs', rotas)
-// app.use('/criaRota/:nome', rotas)
+// app.use('/rota/:nome', rotas)
 
 
 // [M1S06] Ex 3 - Iniciando um servidor node

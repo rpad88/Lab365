@@ -6,7 +6,7 @@ router.get('/', controller.index)
 router.get('/devs', controller.devs)
 
 // [M1S06] Ex 4 - Rotas com express
-router.post('/criaRota/:nome', controller.criaRota)
+router.post('/rota/:nome', controller.rota)
 
 // [M1S06] Ex 5 - Rotas com express
 router.post('/enviaObj', controller.enviaObj)
